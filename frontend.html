@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Forgery Image Detection</title>
+</head>
+
+<body>
+
+    <!-- HEADER SECTION -->
+    <header>
+        <h1>Scientific Forgery Image Detection System</h1>
+        <p>Upload a biomedical image to detect possible copy-move forgery.</p>
+    </header>
+
+    <hr>
+
+    <!-- NAVIGATION (optional for future expansion) -->
+    <nav>
+        <button>Home</button>
+        <button>Upload Image</button>
+        <button>About</button>
+    </nav>
+
+    <hr>
+
+    <!-- MAIN UPLOAD SECTION -->
+    <main>
+
+        <section id="upload-section">
+
+            <h2>Upload Image</h2>
+
+            <!-- IMAGE INPUT -->
+            <input type="file" accept="image/*">
+
+            <!-- PREVIEW AREA (shows selected image) -->
+            <div id="image-preview">
+                <!-- Selected image will be displayed here -->
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button>Analyze Image</button>
+
+        </section>
+
+        <hr>
+
+        <!-- RESULTS SECTION -->
+        <section id="results-section">
+
+            <h2>Analysis Results</h2>
+
+            <!-- ORIGINAL IMAGE DISPLAY -->
+            <div>
+                <h3>Original Image</h3>
+                <div id="original-image">
+                    <!-- backend-sent image -->
+                </div>
+            </div>
+
+            <!-- DETECTION OUTPUT -->
+            <div>
+                <h3>Detected Forgery Regions</h3>
+                <div id="result-output">
+                    <!-- highlighted regions or message -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Scientific Image Integrity Project - CS 3338</p>
+    </footer>
+
+</body>
+</html>

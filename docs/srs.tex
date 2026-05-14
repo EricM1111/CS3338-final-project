@@ -1,0 +1,143 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfsubject={TeX and LaTeX},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.0 }
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+        \vspace{1.9cm}
+        for\\
+        \vspace{1.9cm}
+        Scientific Forgery Image Detection System\\
+        \vspace{1.9cm}
+        \LARGE{Version \myversion }\\
+        \vspace{1.9cm}
+        Prepared by Eric Marroquin, Alexis Flores, Alex Lam, Janelle Rivera\\
+        \vspace{1.9cm}
+        Software Engineering Tools\\
+        \vspace{0.2cm}
+        May 2026\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+
+\chapter*{Versions Table}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+	    Name & Date & Reason For Changes & Version\\
+        \hline
+	    Janelle & 5/11 & Creation of Document & 1\\
+        \hline
+	    null & null & null & null\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\chapter{Introduction}
+
+\section{Purpose}
+The purpose of the Scientific Forgery Image Detection System is to create a web-based tool able to detect potential copy-move forgery in biomedical and scientific images. The detection system aims to prevent scientific and biomedical figures from being manipulated, ensuring scientific integrity by identifying duplicated regions that may indicate falsified research data. The application allows users to upload scientific images and receive analysis results that highlight manipulated sections of the image.
+
+
+\section{Intended Audience}
+
+This document is intended to facilitate software developers, researchers, system testers, instructors, and future maintenance developers who may need to refer back to the software used in the system.
+
+\section{Project Overview}
+
+The Scientific Forgery Image Detection System is a web-based application consisting of a frontend web application, a backend API server, and an ML model detection System. The system allows users to upload images of figures through a web interface. The uploaded image is transmitted to the backend server, where the image is validated and processed. Invalid images will be handled through error detection. The main detection system will analyze valid images for copy-move forgery and return the results to the frontend for display.
+
+\section{Scope}
+The system is designed to detect manipulated images of figures in the scientific and biomedical fields. These figures include bar graphs, pie charts, scatter plots, and other types of diagrams. The purpose of this system is to help researchers and other professionals who look over these types of elements when understanding technical information from within their fields.
+
+\section{System Overview}
+The user will upload an image through the frontend interface. The frontend will then send the image to the backend API. The backend will then validate and process the image accordingly. The detection model will then analyze the image. The backend will then return the results to the frontend. 
+
+
+\chapter{External Interface Requirements}
+
+\section{User Interface Requirements}
+The interface will include basic instructions for users. It will include an image upload feature, a submission button, and a section for results. The result section will include the submitted image, and any region that was detected as faulty will be highlighted. 
+
+
+\section{Software Interface Requirements}
+The frontend will consist of HTML and CSS. For the backend of the system, we will be utilizing Python, FastAPI, and Uvicorn. The libraries used include OpenCV, NumPy, Pillow, and PyTorch.
+
+
+\section{Hardware Interface Requirements}
+The system will support standard desktop and laptop computers, modern web browsers, internet connectivity, and a server able to run Python backend services. Recommended server specifications include a multi-core CPU, a minimum of 8 GB RAM, and storage for uploaded images and logs.
+
+
+\section{Communication Interfaces}
+The frontend and backend will communicate using HTTP and HTTPS protocols. The system will use RESTful API communication and support multipart file uploads for images.  Responses between components will be transmitted using JSON formatting. 
+
+\chapter{Legal and Ethical Considerations}
+
+\section{User Data and Privacy}
+The system will not collect image data from users. If users believe there has been an error with their results, they may submit their image and results by following the directions on the main interface. 
+
+\section{Ethical Concerns}
+The system does not guarantee complete accuracy through the results given. Different manipulations are not entirely accounted for and may return inaccurate results. False negatives may lead to misplaced reassurance from users. Users should understand that the system is only a starting point for identifying forgery and manipulation within images.
+
+
+\chapter{Glossary}
+\begin{itemize}
+\item{SRS: Software Requirements Specification}
+\item{API: Application Programming Interface}
+\item{UI: User Interface}
+\item{REST: Representational State Transfer}
+\item{JSON: JavaScript Object Notation}
+\item{HTTP: Hypertext Transfer Protocol}
+\item{HTTPS: Hypertext Transfer Protocol Secure}
+\item{CPU: Central Processing Unit}
+\item{RAM: Random Access Memory}
+\end{itemize}
+
+
+
+\end{document}

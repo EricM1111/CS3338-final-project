@@ -1,6 +1,6 @@
 CS 3338 Final Project - Group 11 - Scientific Forgery Image Detection System
 Jira Project URL:
-https://calstatela-cs3338-spr25.atlassian.net/jira/your-work
+https://cs3337-group-11.atlassian.net/jira/software/projects/IFD/boards/167
 Team
 Janelle Rivera
 Eric Marroquin

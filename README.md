@@ -18,7 +18,7 @@ The Scientific Forgery Image Detection System is a web-based application that de
 
 The system comprises:
 - A Web Application (Frontend)
-- A Backend API Server
+- A Backend API Server (Planned_
 - A Detection System (Planned)
 
 ---
@@ -42,7 +42,7 @@ The application follows this general workflow:
 - Submit button for analysis
 - Results display section
 
-### Backend System:
+### Backend System: (Planned)
 - REST API for image upload
 - Image handling and validation
 - JSON responses
@@ -64,7 +64,7 @@ The application follows this general workflow:
 - CSS
 - JavaScript
 
-### Backend:
+### Planned Backend:
 - Python
 - FastAPI
 - Uvicorn

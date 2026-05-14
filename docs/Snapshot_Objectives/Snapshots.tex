@@ -1,0 +1,420 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{Scientific Forgery Image Detection\\Project Snapshots}
+\author{Janelle Rivera \and Eric Marroquin \and Alexis Flores \and Alex Lam}
+\date{May 2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Snapshot 1 -- Start}
+
+The purpose of this project is to develop a software system capable of detecting
+copy-move forgery in biomedical and scientific images. Copy-move forgery occurs when
+a section of an image is duplicated and pasted elsewhere within the same image in
+order to manipulate scientific results.
+
+The system will allow users to upload biomedical images through a web interface. The
+uploaded image will then be analyzed by a backend detection system that identifies
+potentially duplicated regions. The project is intended to help improve scientific integrity
+by assisting researchers, reviewers, and institutions in identifying manipulated figures.
+
+This project will be developed incrementally throughout multiple project snapshots.
+
+\subsection{Objective 1 -- Repository Setup}
+
+Create a GitHub repository that will contain all project files, source code,
+documentation, and version history.
+
+\begin{itemize}
+    \item Create GitHub repository
+    \item Organize repository folder structure
+    \item Add README file
+    \item Create documentation folders
+\end{itemize}
+
+\subsection{Objective 2 -- Setup Frontend Framework}
+
+Frontend structure for the web application.
+
+\begin{itemize}
+    \item React.js
+    \item HTML/CSS
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Create React frontend application
+    \item Configure project dependencies
+    \item Add image upload interface
+\end{itemize}
+
+\subsection{Objective 3 -- Setup Backend Framework}
+
+Develop the backend API structure responsible for receiving uploaded images and
+communicating with the detection system.
+
+\begin{itemize}
+    \item Python
+    \item FastAPI
+    \item Uvicorn
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Create FastAPI backend server
+    \item Configure backend dependencies
+    \item Test server responses
+\end{itemize}
+
+\subsection{Objective 4 -- Define Initial Detection Workflow}
+
+Plan the workflow for how biomedical images will be processed.
+
+\textbf{Initial Workflow}
+
+\begin{enumerate}
+    \item User uploads image
+    \item Frontend sends image to backend
+    \item Backend processes request
+    \item Detection system analyzes image
+    \item Results returned to frontend
+\end{enumerate}
+
+\subsection{Objective 5 -- Docker Environment Planning}
+
+Plan the containerized deployment structure for the project.
+
+\textbf{Planned Services}
+
+\begin{itemize}
+    \item Frontend container
+    \item Backend container
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Create initial docker-compose.yml file
+    \item Define frontend service
+    \item Define backend service
+    \item Plan future ML service integration
+\end{itemize}
+
+\subsection{Objective 6 -- Project Documentation}
+
+\textbf{Documents Started}
+
+\begin{itemize}
+    \item Software Design Document (SDD)
+    \item Software Requirements Specification (SRS)
+    \item Design Specification
+    \item User Manual (README)
+    \item Snapshot Objectives
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Create LaTeX document templates
+    \item Create version tables
+    \item Begin introduction sections
+    \item Document project purpose and architecture
+\end{itemize}
+
+\subsection{Initial Dependencies and Libraries}
+
+\textbf{Frontend Dependencies}
+
+\begin{itemize}
+    \item react
+    \item react-dom
+\end{itemize}
+
+\textbf{Backend Dependencies}
+
+\begin{itemize}
+    \item fastapi
+\end{itemize}
+
+\textbf{Planned Future Dependencies}
+
+\begin{itemize}
+    \item torch
+    \item pillow
+\end{itemize}
+
+\subsection{Initial Team Task Delegation}
+
+\textbf{Frontend Development}
+
+Responsibilities:
+
+\begin{itemize}
+    \item User interface design
+    \item Upload page implementation
+    \item Displaying results
+\end{itemize}
+
+\textbf{Backend Development}
+
+Responsibilities:
+
+\begin{itemize}
+    \item API development
+    \item Image upload handling
+    \item Communication with detection system
+\end{itemize}
+
+\textbf{Machine Learning / Detection}
+
+Responsibilities:
+
+\begin{itemize}
+    \item Research copy-move forgery detection methods
+    \item Implement image analysis
+    \item Develop segmentation and detection logic
+\end{itemize}
+
+\textbf{Documentation and Testing}
+
+Responsibilities:
+
+\begin{itemize}
+    \item Maintain SRS and SDD
+    \item Create TestRail reports
+    \item Update Jira sprint tasks
+    \item Maintain workflow diagrams
+\end{itemize}
+
+\newpage
+
+\section{Snapshot 2 -- Checkpoint 1}
+
+This snapshot focuses on expanding the project by implementing the frontend system,
+which serves as the user interface for uploading and interacting with biomedical image
+analysis.
+
+At this stage, the project begins transitioning from planning and setup into actual system
+development.
+
+\subsection{Objective 1 -- Frontend Implementation (New Major Feature)}
+
+\textbf{Purpose}
+
+The purpose of this objective is to develop the frontend portion of the system that allows
+users to interact with the application through a web interface. This includes uploading
+biomedical images and preparing them to be sent to the backend for processing.
+
+\textbf{Frontend Framework}
+
+\begin{itemize}
+    \item HTML/CSS
+    \item React
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Create main user interface layout (home page and upload page)
+    \item Implement image upload functionality
+    \item Create basic navigation between UI sections
+\end{itemize}
+
+\textbf{Expected Outcome for Snapshot 2}
+
+\begin{itemize}
+    \item Allow users to upload biomedical images
+    \item Display a preview of selected images
+    \item Have a structured UI ready for backend communication
+    \item Be organized into reusable components
+    \item Be prepared for integration with the backend system in future snapshots
+\end{itemize}
+
+\newpage
+
+\section{Snapshot 3 -- Checkpoint 2}
+
+The purpose of Snapshot 3 is to expand the Scientific Forgery Image Detection System
+by introducing image analysis functionality capable of identifying potentially fraudulent
+regions within uploaded images.
+
+This snapshot focuses on implementing the detection logic that analyzes uploaded
+images and identifies areas that may contain copy move forgery.
+
+\subsection{Objective 1 -- Fraudulent Region Detection System}
+
+\textbf{Purpose}
+
+The purpose of this objective is to develop the initial detection functionality that identifies
+where potentially fraudulent or duplicated regions exist within images.
+
+The system will begin analyzing uploaded images and returning basic detection results
+indicating suspicious areas that may have been manipulated through copy move
+forgery.
+
+\textbf{Detection System Technologies}
+
+\begin{itemize}
+    \item Python
+    \item OpenCV
+    \item NumPy
+    \item Pillow
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Research image duplication detection methods
+    \item Implement basic image analysis functionality
+    \item Detect repeated or duplicated image regions
+    \item Generate basic highlighted output for suspicious regions
+    \item Connect detection system to backend API
+    \item Return detection results to frontend interface
+    \item Prepare frontend to display fraudulent region results
+\end{itemize}
+
+\subsection{Objective 2 -- Backend and Frontend Integration}
+
+\textbf{Purpose}
+
+Integrate the frontend image upload system with the backend detection functionality.
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Connect React frontend to FastAPI backend
+    \item Send uploaded image data to backend API
+    \item Process backend responses
+    \item Display returned analysis results in frontend interface
+    \item Improve error handling for invalid uploads
+\end{itemize}
+
+\subsection{Objective 3 -- Detection Workflow Update}
+
+\textbf{Updated Workflow}
+
+\begin{enumerate}
+    \item User uploads biomedical image
+    \item Frontend sends image to backend
+    \item Backend processes uploaded image
+    \item Detection system analyzes image for duplicated regions
+    \item Suspicious regions are identified
+    \item Detection results returned to frontend
+    \item User views highlighted suspicious regions
+\end{enumerate}
+
+\subsection{Objective 4 -- Project Documentation Updates}
+
+\textbf{Documents Updated}
+
+\begin{itemize}
+    \item Software Design Document (SDD)
+    \item Software Requirements Specification (SRS)
+    \item Design Specification
+    \item Snapshot Objectives
+    \item README/User Manual
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Update workflow diagrams
+    \item Document detection functionality
+    \item Revise frontend/backend integration details
+    \item Update version tables
+    \item Document detection system architecture
+\end{itemize}
+
+\subsection{Objective 5 -- Testing and Validation}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Test image upload functionality
+    \item Test backend API communication
+    \item Test fraudulent region detection responses
+    \item Validate detection output formatting
+    \item Document test results in TestRail
+\end{itemize}
+
+\newpage
+
+\section{Snapshot 4 -- Original Due Date}
+
+The purpose of Snapshot 4 is to finalize the Scientific Forgery Image Detection System
+by improving system stability, refining the user interface, and documenting future
+improvements that could be added beyond the current project scope.
+
+This snapshot focuses on polishing the existing functionality developed in previous
+snapshots and preparing the project for final submission.
+
+\subsection{Objective 1 -- Final System Improvements}
+
+\textbf{Purpose}
+
+Improve the overall usability and organization of the Scientific Forgery Image Detection System.
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Improve frontend layout and organization
+    \item Refine image upload interface
+    \item Improve display of detection results
+    \item Clean up project folder structure
+    \item Improve API response handling
+    \item Fix minor frontend and backend issues
+\end{itemize}
+
+\subsection{Objective 2 -- Detection Result Refinements}
+
+\textbf{Purpose}
+
+Improve the presentation of fraudulent region detection results returned to users.
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Improve suspicious region highlighting
+    \item Improve formatting of result messages
+    \item Improve communication between frontend and backend
+    \item Improve handling of invalid image uploads
+    \item Improve detection result display structure
+\end{itemize}
+
+\subsection{Objective 3 -- Final Documentation Updates}
+
+\textbf{Documents Updated}
+
+\begin{itemize}
+    \item Software Design Document (SDD)
+    \item Software Requirements Specification (SRS)
+    \item Design Specification
+    \item Snapshot Objectives
+    \item README/User Manual
+    \item TestRail Reports
+\end{itemize}
+
+\textbf{Tasks}
+
+\begin{itemize}
+    \item Finalize all project documents
+    \item Update version tables
+    \item Revise workflow descriptions
+    \item Ensure documentation consistency across all files
+    \item Finalize references and formatting
+\end{itemize}
+
+\end{document}

@@ -1,64 +1,116 @@
-# CS 3338 Final Project - Group 4 - Scientific Forgery Image Detection System
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
 
-**Jira Project URL:**  
-https://calstatela-cs3338-spr25.atlassian.net/jira/your-work  
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS 3338 Final Project --- Group 4}
+\lhead{Scientific Forgery Image Detection System}
+\cfoot{\thepage}
 
-Team
-- Janelle Rivera  
-- Eric Marroquin  
-- Alexis Flores  
-- Alex Lam  
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
 
-Overview
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Scientific Forgery Image Detection System}} \\[0.5em]
+    {\large CS 3338 Final Project --- Group 4} \\[0.3em]
+    \textit{Spring 2025}
+\end{center}
+
+\vspace{0.5em}
+\noindent\textbf{Jira Project URL:} \\
+\url{https://cs3337-group-11.atlassian.net/jira/software/projects/IFD/boards/167}
+
+\vspace{1em}
+
+\section{Team}
+
+\begin{itemize}[noitemsep]
+    \item Janelle Rivera
+    \item Eric Marroquin
+    \item Alexis Flores
+    \item Alex Lam
+\end{itemize}
+
+\section{Overview}
+
 The Scientific Forgery Image Detection System is a web-based application that detects copy-move forgery in biomedical and scientific images. The system allows users to upload images and receive analysis results identifying possible duplicated regions in scientific figures.
 
 The system comprises:
-- A Web Application (Frontend)
-- A Backend API Server
-- A Detection System (Planned)
+\begin{itemize}[noitemsep]
+    \item A Web Application (Frontend)
+    \item A Backend API Server
+    \item A Detection System (Planned)
+\end{itemize}
 
-System Architecture
+\section{System Architecture}
+
 The application follows this general workflow:
-- Users upload biomedical images through the web interface
-- Frontend sends image to backend API
-- Backend receives and processes the image
-- Detection system analyzes image (future implementation)
-- Backend returns results to frontend
-- User views results in the web interface
 
-Features
+\begin{enumerate}[noitemsep]
+    \item Users upload biomedical images through the web interface
+    \item Frontend sends image to backend API
+    \item Backend receives and processes the image
+    \item Detection system analyzes image (future implementation)
+    \item Backend returns results to frontend
+    \item User views results in the web interface
+\end{enumerate}
 
-Web Application (Frontend):
-- Image upload interface
-- Image preview
-- Submit button for analysis
-- Results display section
+\section{Features}
 
-Backend System:
-- REST API for image upload
-- Image handling and validation
-- JSON responses
-- Communication with detection module
+\subsection{Web Application (Frontend)}
+\begin{itemize}[noitemsep]
+    \item Image upload interface
+    \item Image preview
+    \item Submit button for analysis
+    \item Results display section
+\end{itemize}
 
-Detection System (Planned):
-- Copy-move forgery detection
-- Identification of duplicated regions
-- Image region comparison
-- Pixel-level analysis
+\subsection{Backend System}
+\begin{itemize}[noitemsep]
+    \item REST API for image upload
+    \item Image handling and validation
+    \item JSON responses
+    \item Communication with detection module
+\end{itemize}
 
-Technologies Used
+\subsection{Detection System (Planned)}
+\begin{itemize}[noitemsep]
+    \item Copy-move forgery detection
+    \item Identification of duplicated regions
+    \item Image region comparison
+    \item Pixel-level analysis
+\end{itemize}
 
-Frontend:
-- HTML
+\section{Technologies Used}
 
-Backend:
-- Python
-- FastAPI
-- Uvicorn
+\begin{table}[h]
+\centering
+\begin{tabular}{>{\bfseries}l l}
+\toprule
+Category & Technologies \\
+\midrule
+Frontend & HTML \\
+\addlinespace
+Backend & Python, FastAPI, Uvicorn \\
+\addlinespace
+Planned Libraries & OpenCV, NumPy, Pillow, PyTorch \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Planned Libraries:
-- OpenCV
-- NumPy
-- Pillow
-- PyTorch
+\end{document}

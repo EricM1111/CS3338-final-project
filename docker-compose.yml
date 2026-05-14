@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  frontend:
+    image: nginx:alpine
+    container_name: forgery-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html
+    networks:
+      - forgery-network
+
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    container_name: forgery-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src/backend:/app
+    networks:
+      - forgery-network
+
+  db:
+    image: postgres:15
+    container_name: forgery-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: forgerydb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - forgery-network
+
+volumes:
+  db-data:
+
+networks:
+  forgery-network:
+    driver: bridge

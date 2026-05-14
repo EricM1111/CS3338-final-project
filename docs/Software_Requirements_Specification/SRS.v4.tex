@@ -1,0 +1,222 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{array}
+
+\title{Scientific Forgery Image Detection\\SRS Version 4}
+\author{Janelle Rivera \and Eric Marroquin \and Alexis Flores \and Alex Lam}
+\date{May 8, 2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+This document defines the requirements for the Scientific Forgery Image Detection
+System. The system is designed to detect copy-move forgery in biomedical and
+scientific images, where regions of an image are duplicated to manipulate research
+results.
+
+The system allows users to upload scientific images through a web interface. The
+images are processed by a backend detection system that identifies and highlights
+potentially duplicated regions, supporting researchers and reviewers in identifying
+manipulated figures.
+
+\subsection{Intended Audience}
+
+This document is intended for:
+
+\begin{itemize}
+    \item Software developers working on the system
+    \item Course instructors evaluating the project
+    \item Students involved in system design
+    \item Future maintainers of the software
+\end{itemize}
+
+\subsection{Overall Description}
+
+The system is a complete web-based application consisting of:
+
+\begin{itemize}
+    \item A frontend interface for image uploads and displaying results
+    \item A backend API for handling image processing requests
+    \item A detection system capable of identifying potentially duplicated regions in biomedical images
+\end{itemize}
+
+At this stage (Snapshot 4), the system includes:
+
+\begin{itemize}
+    \item Refined frontend image upload functionality
+    \item Improved backend API integration
+    \item Final fraudulent region detection workflow
+    \item Enhanced suspicious region result display
+    \item Improved error handling for invalid uploads
+    \item Final interface and workflow improvements
+\end{itemize}
+
+\section{External Interface Requirements}
+
+\subsection{User Interface Requirements}
+
+The system provides a refined web interface with the following components:
+
+\begin{itemize}
+    \item Homepage with project description
+    \item Image upload page with improved layout
+    \item File selection input for biomedical images
+    \item Submit button for analysis requests
+    \item Image preview functionality
+    \item Detection results display section with highlighted regions
+    \item Clear status messages (forgery detected / no forgery / error)
+    \item Loading indicator during analysis
+\end{itemize}
+
+\subsection{Software Interface Requirements}
+
+\textbf{Frontend:}
+
+\begin{itemize}
+    \item React.js / HTML
+    \item HTML/CSS
+    \item JavaScript
+\end{itemize}
+
+\textbf{Backend:}
+
+\begin{itemize}
+    \item Python
+    \item FastAPI
+    \item Uvicorn
+    \item OpenCV
+    \item NumPy
+    \item Pillow
+\end{itemize}
+
+\textbf{Deployment:}
+
+\begin{itemize}
+    \item Docker
+    \item Docker Compose
+\end{itemize}
+
+\textbf{Communication:}
+
+\begin{itemize}
+    \item HTTP requests between frontend and backend
+    \item JSON-based API responses
+    \item Base64 encoded result images
+\end{itemize}
+
+\subsection{Hardware Interface Requirements}
+
+No specialized hardware is required. The system runs on standard computing devices
+capable of running a web browser and Docker containers.
+
+\subsection{Communication Requirements}
+
+\begin{itemize}
+    \item REST API communication between frontend and backend
+    \item Biomedical image upload through HTTP requests
+    \item Detection analysis responses returned in JSON format
+    \item Frontend display of suspicious region analysis results
+    \item Improved error response formatting for invalid uploads
+\end{itemize}
+
+\section{Legal and Ethical Considerations}
+
+\subsection{Data Integrity}
+
+The system processes scientific images, which may contain sensitive or
+research-related content. All uploaded images are handled securely and only used for
+analysis purposes. Uploaded images are removed from the server immediately after
+analysis.
+
+\subsection{Privacy Considerations}
+
+\begin{itemize}
+    \item Uploaded images are used only for detection purposes
+    \item No user personal data is required
+    \item Uploaded images are deleted from the server after analysis
+    \item Data should not be shared externally without permission
+\end{itemize}
+
+\subsection{Ethical Considerations}
+
+\begin{itemize}
+    \item The system is intended to support scientific integrity and image analysis research
+    \item Detection results should not be considered definitive proof of misconduct
+    \item False positives or false negatives may occur due to limitations in early-stage detection methods
+    \item Human review is still necessary when evaluating scientific images
+\end{itemize}
+
+\section{Glossary}
+
+\begin{longtable}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Term} & \textbf{Definition} \\
+\hline
+API & Interface used for communication between software components \\
+\hline
+Backend & Server-side system that processes requests \\
+\hline
+Frontend & User interface of the application \\
+\hline
+Copy-Move Forgery & Image manipulation technique where parts of an image are duplicated \\
+\hline
+FastAPI & Python framework for building APIs \\
+\hline
+React.js & JavaScript library for building user interfaces \\
+\hline
+HTTP & Protocol used for web communication \\
+\hline
+JSON & Lightweight data format used for API responses \\
+\hline
+OpenCV & Open-source computer vision library used for image analysis \\
+\hline
+ORB & Oriented FAST and Rotated BRIEF --- keypoint detection algorithm \\
+\hline
+Keypoint & A distinctive location in an image used for matching \\
+\hline
+Docker & Platform for containerizing applications \\
+\hline
+Docker Compose & Tool for defining and running multi-container Docker applications \\
+\hline
+\end{longtable}
+
+\section{Versions Table}
+
+\begin{longtable}{|p{1.5cm}|p{2.5cm}|p{5.5cm}|p{4cm}|}
+\hline
+\textbf{Version} & \textbf{Date} & \textbf{Description} & \textbf{Authors} \\
+\hline
+1.0 & May 8, 2026 & Initial SRS created for Snapshot 1 & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\
+\hline
+1.1 & May 10, 2026 & Updated frontend implementation progress and revised interface requirements & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\
+\hline
+1.2 & May 12, 2026 & Added fraudulent region detection requirements and backend/frontend integration updates & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\
+\hline
+1.3 & May 14, 2026 & Added final workflow improvements, detection result refinements, and finalized system requirements & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\
+\hline
+\end{longtable}
+
+\section{References}
+
+\begin{itemize}
+    \item FastAPI Documentation: \url{https://fastapi.tiangolo.com/}
+    \item React Documentation: \url{https://react.dev/}
+    \item OpenCV Documentation: \url{https://opencv.org/}
+    \item Docker Documentation: \url{https://docs.docker.com/}
+    \item OWASP API Security Guidelines: \url{https://owasp.org/www-project-api-security/}
+\end{itemize}
+
+\end{document}

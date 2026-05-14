@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS 3338 --- Group 4}
+\lhead{Scientific Forgery Image Detection}
+\cfoot{\thepage}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\begin{document}
+
+% Title Page
+\begin{center}
+    \vspace*{2cm}
+    {\LARGE \textbf{Scientific Forgery Image Detection}} \\[1em]
+    {\large By: Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam} \\[0.5em]
+    {\large May 8, 2026} \\[0.5em]
+    {\large Software Engineering Tools, CS 3338}
+\end{center}
+
+\vspace{2cm}
+
+\tableofcontents
+\newpage
+
+% Section 1: Introduction
+\section{Introduction}
+
+\subsection{Purpose}
+
+Scientific images play an important role in academic research and published studies. However, some images may be manipulated through techniques such as copy-move forgery, where parts of an image are duplicated and placed elsewhere to falsify results.
+
+The purpose of this system is to detect and analyze copy-move forgery in biomedical and scientific images. Users will be able to upload images through a web interface, and the system will process them to identify potentially duplicated regions. This helps support scientific integrity by assisting researchers and reviewers in identifying manipulated figures.
+
+\subsection{Intended Audience}
+
+This document is intended for:
+\begin{itemize}[noitemsep]
+    \item Software developers working on the system
+    \item Course instructors evaluating the project
+    \item Students involved in system design
+    \item Future maintainers of the software
+\end{itemize}
+
+\subsection{Overview}
+
+The system is a web-based application consisting of a frontend interface and a backend server. Users upload images through the frontend, and the backend processes these images for future detection logic development. At this stage, the system focuses on:
+\begin{itemize}[noitemsep]
+    \item Project setup
+    \item Frontend structure
+    \item Backend structure
+    \item Basic workflow definition
+    \item Documentation planning
+\end{itemize}
+
+% Section 2: System Architecture
+\section{System Architecture}
+
+\subsection{Overview}
+
+The system follows a simple client-server architecture.
+
+\subsection{Frontend}
+
+The frontend is responsible for user interaction and was partially implemented in Snapshot 2.
+
+\textbf{Responsibilities:}
+\begin{itemize}[noitemsep]
+    \item Provide image upload interface (implemented in Snapshot 2)
+    \item Send image data to backend (prepared for future integration)
+    \item Display backend responses (placeholder at this stage)
+\end{itemize}
+
+\textbf{Technologies:}
+\begin{itemize}[noitemsep]
+    \item HTML
+    \item React
+\end{itemize}
+
+\subsection{Backend}
+
+The backend handles incoming requests from the frontend.
+
+\textbf{Responsibilities:}
+\begin{itemize}[noitemsep]
+    \item Receive uploaded images
+    \item Process API requests
+    \item Return placeholder or future detection results
+\end{itemize}
+
+\textbf{Technologies:}
+\begin{itemize}[noitemsep]
+    \item Python
+    \item FastAPI
+    \item Uvicorn
+\end{itemize}
+
+\subsection{Workflow Design}
+
+\textbf{Basic Workflow (Updated in Snapshot 2 Progress):}
+\begin{itemize}[noitemsep]
+    \item User uploads image (frontend implemented)
+    \item Frontend sends image structure prepared for backend communication
+    \item Backend receives request (to be fully integrated in next snapshot)
+    \item System processes image (future detection logic)
+    \item Response is returned to frontend
+    \item User views result
+\end{itemize}
+
+% Section 3: User Interface Design
+\section{User Interface Design}
+
+\subsection{Homepage}
+
+The homepage introduces the application and provides navigation to upload functionality.
+
+\textbf{Elements:}
+\begin{itemize}[noitemsep]
+    \item Project title
+    \item Short description
+    \item Navigation to upload page
+\end{itemize}
+
+\subsection{Image Upload Interface (Implemented in Snapshot 2)}
+
+This page allows users to submit images for analysis.
+
+\textbf{Elements:}
+\begin{itemize}[noitemsep]
+    \item Upload button
+    \item File selection option
+    \item Submit button
+    \item Basic image preview structure (prepared/implemented)
+\end{itemize}
+
+\subsection{Results Display (Basic Placeholder)}
+
+\begin{itemize}[noitemsep]
+    \item Confirmation of upload
+    \item Placeholder response from backend
+    \item Structure prepared for future detection output display
+\end{itemize}
+
+% Section 4: Glossary
+\section{Glossary}
+
+\begin{longtable}{>{\bfseries}p{0.3\textwidth} p{0.65\textwidth}}
+\toprule
+Term & Definition \\
+\midrule
+\endhead
+API & Application Programming Interface used for communication between frontend and backend \\[0.5em]
+Backend & Server-side system that processes requests \\[0.5em]
+Frontend & User interface of the application \\[0.5em]
+Copy-Move Forgery & Image manipulation where parts of an image are duplicated within the same image \\[0.5em]
+React.js & JavaScript library used for building user interfaces \\[0.5em]
+FastAPI & Python framework used for building APIs \\[0.5em]
+Uvicorn & Server used to run FastAPI applications \\
+\bottomrule
+\end{longtable}
+
+% Section 5: Versions Table
+\section{Versions Table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{>{\centering}p{0.1\textwidth} >{\centering}p{0.17\textwidth} p{0.38\textwidth} p{0.25\textwidth}}
+\toprule
+\textbf{Version} & \textbf{Date} & \textbf{Description} & \textbf{Authors} \\
+\midrule
+1.0 & May 8, 2026 & Initial Software Design Document created for Snapshot 1 & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\[0.5em]
+1.1 & May 10, 2026 & Added frontend implementation progress and updated system architecture and UI design to reflect image upload interface development & Janelle Rivera, Eric Marroquin, Alexis Flores, Alex Lam \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Section 6: References
+\section{References}
+
+\begin{itemize}[noitemsep]
+    \item FastAPI Documentation: \url{https://fastapi.tiangolo.com/}
+    \item React Documentation: \url{https://react.dev/}
+    \item OpenCV Documentation (future reference): \url{https://opencv.org/}
+\end{itemize}
+
+\end{document}

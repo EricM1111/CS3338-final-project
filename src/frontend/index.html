@@ -2,6 +2,87 @@
 <html>
 <head>
     <title>Scientific Forgery Image Detection</title>
+
+    <style>
+        /* Basic page layout */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        header h1 {
+            color: #2c3e50;
+        }
+
+        nav button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        /* Upload section */
+        #upload-section, #results-section {
+            padding: 20px 0;
+        }
+
+        #image-preview {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 120px;
+            text-align: center;
+        }
+
+        #image-preview img {
+            max-width: 100%;
+            max-height: 400px;
+        }
+
+        #analyze-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        #analyze-btn:hover {
+            background-color: #2980b9;
+        }
+
+        #analyze-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        /* Results section */
+        #loading {
+            font-style: italic;
+            color: #666;
+        }
+
+        #result-message.forgery {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        #result-message.clean {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        #result-image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,7 +95,7 @@
 
     <hr>
 
-    <!-- NAVIGATION (optional for future expansion) -->
+    <!-- NAVIGATION -->
     <nav>
         <button>Home</button>
         <button>Upload Image</button>
@@ -27,55 +108,161 @@
     <main>
 
         <section id="upload-section">
-
             <h2>Upload Image</h2>
 
             <!-- IMAGE INPUT -->
-            <input type="file" accept="image/*">
+            <input type="file" id="image-input" accept="image/*">
 
-            <!-- PREVIEW AREA (shows selected image) -->
+            <!-- PREVIEW AREA -->
             <div id="image-preview">
-                <!-- Selected image will be displayed here -->
+                <p>Selected image will be displayed here</p>
             </div>
 
             <!-- SUBMIT BUTTON -->
-            <button>Analyze Image</button>
-
+            <button id="analyze-btn">Analyze Image</button>
         </section>
 
         <hr>
 
         <!-- RESULTS SECTION -->
         <section id="results-section">
-
-            <h2>Analysis Results</h2>
-
-            <!-- ORIGINAL IMAGE DISPLAY -->
-            <div>
-                <h3>Original Image</h3>
-                <div id="original-image">
-                    <!-- backend-sent image -->
-                </div>
+            <h2>Results</h2>
+            <div id="loading" style="display: none;">Analyzing image, please wait...</div>
+            <div id="result-content" style="display: none;">
+                <p id="result-message"></p>
+                <div id="result-image-container"></div>
             </div>
-
-            <!-- DETECTION OUTPUT -->
-            <div>
-                <h3>Detected Forgery Regions</h3>
-                <div id="result-output">
-                    <!-- highlighted regions or message -->
-                </div>
-            </div>
-
         </section>
 
     </main>
 
-    <hr>
+    <script>
+        // ============================================================
+        // CONFIG
+        // ============================================================
+        // URL where our FastAPI backend is running.
+        // When using docker-compose, the backend container exposes port 5000.
+        const BACKEND_URL = "http://localhost:5000";
 
-    <!-- FOOTER -->
-    <footer>
-        <p>Scientific Image Integrity Project - CS 3338</p>
-    </footer>
+        // ============================================================
+        // GET REFERENCES TO PAGE ELEMENTS
+        // ============================================================
+        const imageInput = document.getElementById("image-input");
+        const imagePreview = document.getElementById("image-preview");
+        const analyzeBtn = document.getElementById("analyze-btn");
+        const loading = document.getElementById("loading");
+        const resultContent = document.getElementById("result-content");
+        const resultMessage = document.getElementById("result-message");
+        const resultImageContainer = document.getElementById("result-image-container");
+
+        // Holds the file the user selected. We need this when they click "Analyze".
+        let selectedFile = null;
+
+        // ============================================================
+        // WHEN USER SELECTS AN IMAGE: show a preview
+        // ============================================================
+        imageInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            selectedFile = file;
+
+            // Read the file as a data URL so we can display it as an <img>
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.innerHTML = `<img src="${e.target.result}" alt="Selected image">`;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // ============================================================
+        // WHEN USER CLICKS "ANALYZE IMAGE": send to backend
+        // ============================================================
+        analyzeBtn.addEventListener("click", async function () {
+            if (!selectedFile) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            // Show loading state
+            loading.style.display = "block";
+            resultContent.style.display = "none";
+            analyzeBtn.disabled = true;
+
+            // FormData is the standard way to send a file via fetch.
+            const formData = new FormData();
+            formData.append("file", selectedFile);
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/upload`, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned status ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayResult(data);
+
+            } catch (error) {
+                displayError(error.message);
+            } finally {
+                loading.style.display = "none";
+                analyzeBtn.disabled = false;
+            }
+        });
+
+        // ============================================================
+        // DISPLAY THE DETECTION RESULT
+        // ============================================================
+        function displayResult(data) {
+            resultContent.style.display = "block";
+            resultMessage.className = ""; // reset styling
+
+            // Backend reported an error
+            if (data.error) {
+                resultMessage.textContent = `Error: ${data.error}`;
+                resultImageContainer.innerHTML = "";
+                return;
+            }
+
+            // Backend says forgery was found
+            if (data.forgery_detected) {
+                resultMessage.textContent =
+                    `Possible copy-move forgery detected ` +
+                    `(${data.match_count} suspicious matches found).`;
+                resultMessage.className = "forgery";
+            } else {
+                // No forgery detected
+                const count = data.match_count || 0;
+                resultMessage.textContent =
+                    `No forgery detected (${count} matches found).`;
+                resultMessage.className = "clean";
+            }
+
+            // Show the marked image returned by the backend
+            if (data.result_image) {
+                resultImageContainer.innerHTML =
+                    `<img src="${data.result_image}" alt="Detection result">`;
+            } else {
+                resultImageContainer.innerHTML = "";
+            }
+        }
+
+        // ============================================================
+        // DISPLAY AN ERROR (network failure, server down, etc.)
+        // ============================================================
+        function displayError(message) {
+            resultContent.style.display = "block";
+            resultMessage.className = "forgery";
+            resultMessage.textContent =
+                `Could not connect to backend: ${message}. ` +
+                `Make sure the backend is running on port 5000.`;
+            resultImageContainer.innerHTML = "";
+        }
+    </script>
 
 </body>
 </html>

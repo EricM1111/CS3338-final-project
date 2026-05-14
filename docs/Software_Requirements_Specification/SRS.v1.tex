@@ -1,0 +1,189 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{Scientific Forgery Image Detection\\SRS Document}
+\author{Janelle Rivera \and Eric Marroquin \and Alexis Flores \and Alex Lam}
+\date{May 8, 2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+This document defines the requirements for the Scientific Forgery Image Detection
+System. The system is designed to detect copy-move forgery in biomedical and
+scientific images, where regions of an image are duplicated to manipulate research
+results.
+
+The system will allow users to upload scientific images through a web interface. These
+images will be processed by a backend system designed to support future detection
+functionality.
+
+\subsection{Intended Audience}
+
+This document is intended for:
+
+\begin{itemize}
+    \item Software developers working on the system
+    \item Course instructors evaluating the project
+    \item Students involved in system design
+    \item Future maintainers of the software
+\end{itemize}
+
+\subsection{Overall Description}
+
+The system is a web-based application consisting of:
+
+\begin{itemize}
+    \item A frontend user interface for uploading images
+    \item A backend API for receiving and processing images
+    \item A planned detection system for analyzing scientific images
+\end{itemize}
+
+At this stage, the system is in early development and primarily focuses on:
+
+\begin{itemize}
+    \item Project setup
+    \item Image upload functionality
+    \item Backend communication
+    \item Basic workflow structure
+\end{itemize}
+
+No advanced image detection model is implemented yet.
+
+\section{External Interface Requirements}
+
+\subsection{User Interface Requirements}
+
+The system will provide a simple web interface with the following components:
+
+\begin{itemize}
+    \item Homepage displaying project information
+    \item Image upload page
+    \item Upload button for selecting image files
+    \item Submit button to send image to backend
+    \item Basic result display area
+\end{itemize}
+
+The interface must be simple, accessible, and user-friendly.
+
+\subsection{Software Interface Requirements}
+
+The system will interact with the following software components:
+
+\textbf{Frontend:}
+
+\begin{itemize}
+    \item React.js for UI development
+    \item HTML/CSS for layout and styling
+\end{itemize}
+
+\textbf{Backend:}
+
+\begin{itemize}
+    \item Python as the programming language
+    \item FastAPI for API development
+    \item Uvicorn as the server runtime
+\end{itemize}
+
+\textbf{Communication:}
+
+\begin{itemize}
+    \item HTTP requests between frontend and backend
+    \item JSON responses from backend
+\end{itemize}
+
+\subsection{Hardware Interface Requirements}
+
+No specialized hardware is required. The system will run on standard computing
+devices capable of running a web browser and local development servers.
+
+\subsection{Communication Requirements}
+
+\begin{itemize}
+    \item REST API communication between frontend and backend
+    \item Image files transmitted via HTTP requests
+    \item Responses returned in JSON format
+\end{itemize}
+
+\section{Legal and Ethical Considerations}
+
+\subsection{Data Integrity}
+
+The system processes scientific images, which may contain sensitive or
+research-related content. All uploaded images should be handled securely and not
+altered except for analysis purposes.
+
+\subsection{Privacy Considerations}
+
+\begin{itemize}
+    \item Uploaded images are used only for detection purposes
+    \item No user personal data is required
+    \item Data should not be shared externally without permission
+\end{itemize}
+
+\subsection{Ethical Concerns}
+
+This system is designed to support scientific integrity by detecting possible image
+manipulation. However:
+
+\begin{itemize}
+    \item Results should not be considered absolute proof of fraud
+    \item The system should be used as a supporting tool
+    \item Misinterpretation of results must be avoided
+\end{itemize}
+
+\section{Glossary}
+
+\begin{longtable}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Term} & \textbf{Definition} \\
+\hline
+API & Interface used for communication between software components \\
+\hline
+Backend & Server-side system that processes requests \\
+\hline
+Frontend & User interface of the application \\
+\hline
+Copy-Move Forgery & Image manipulation technique where parts of an image are duplicated \\
+\hline
+FastAPI & Python framework for building APIs \\
+\hline
+React.js & JavaScript library for building user interfaces \\
+\hline
+HTTP & Protocol used for web communication \\
+\hline
+JSON & Lightweight data format used for API responses \\
+\hline
+\end{longtable}
+
+\section{Versions Table}
+
+\begin{longtable}{|p{2cm}|p{2.5cm}|p{5cm}|p{4cm}|}
+\hline
+\textbf{Version} & \textbf{Date} & \textbf{Description} & \textbf{Authors} \\
+\hline
+1.0 & May 8, 2026 & Initial SRS created for Snapshot 1 & Janelle Rivera, Eric Marroquin, Alexis Flores \\
+\hline
+\end{longtable}
+
+\section{References}
+
+\begin{itemize}
+    \item FastAPI Documentation: \url{https://fastapi.tiangolo.com/}
+    \item React Documentation: \url{https://react.dev/}
+    \item OWASP API Security Guidelines: \url{https://owasp.org/www-project-api-security/}
+\end{itemize}
+
+\end{document}
